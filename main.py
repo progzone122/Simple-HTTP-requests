@@ -1,11 +1,10 @@
 from tkinter import *
+from textwrap import wrap
 import requests
 
 root = Tk()  
 root.title("API")
-root.geometry('600x300')
-#
-
+root.geometry('570x400')
 url1 = ""
 url2 = ""
 key = ""
@@ -46,8 +45,12 @@ def get():
     
     if url2 != "":
         response2 = requests.get(url2)
-        response = response2.text
-        lbl_resp2.config(text=response)
+        response = response2.text.split(',')
+        i = 0
+        l = len(response)
+        while i < l:
+            listbox.insert(i, response[i])
+            i = i + 1
     else:
         print("Ошибка! Вы не ввели ссылку на источник GET запроса")
     exit
@@ -73,7 +76,10 @@ lbl_url2 = Label(text="URL:", font=text_font)
 txt_url2 = Entry(root, width=35, font=txt_font)
 btn2 = Button(root, width=15, text="Отправить", command=get)
 lbl_resp = Label(root, font=text_font, text="Ответ от сервера:")
-lbl_resp2 = Label(root, font="Times, 10", text=response)
+listbox = Listbox(root, height = 8, 
+                  width = 70, 
+                  activestyle = 'dotbox', 
+                  font = text_font)
 #
 txt_url1.insert(0, "https://")
 txt_url2.insert(0, "https://")
@@ -92,6 +98,6 @@ lbl_url2.place(x=1, y=120)
 txt_url2.place(x=50, y=120)
 btn2.place(x=445, y=120)
 lbl_resp.place(x=1, y=150)
-lbl_resp2.place(x=1, y=180)
+listbox.place(x=1, y=180)
 #
 root.mainloop()
