@@ -48,6 +48,7 @@ def get():
         response = response2.text.split(',')
         i = 0
         l = len(response)
+        listbox.delete(0, END)
         while i < l:
             listbox.insert(i, response[i])
             i = i + 1
