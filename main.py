@@ -28,6 +28,9 @@ def post():
     url1 = txt_url1.get()
     
     if url1 != "":
+        key=txt_key.get()
+        value=txt_val.get()
+        
         response1 = requests.post(url1, data = {key:value})
         response = response1
         lbl_resp2.config(text=response)
@@ -44,7 +47,7 @@ def get():
     if url2 != "":
         response2 = requests.get(url2)
         response = response2.text
-        lbl_resp2.config(text=response.text)
+        lbl_resp2.config(text=response)
     else:
         print("Ошибка! Вы не ввели ссылку на источник GET запроса")
     exit
