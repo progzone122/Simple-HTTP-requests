@@ -32,7 +32,8 @@ def post():
         
         response1 = requests.post(url1, data = {key:value})
         response = response1
-        lbl_resp2.config(text=response)
+        listbox.delete(0, END)
+        listbox.insert(0, response)
     else:
         print("Ошибка! Вы не ввели ссылку на источник POST запроса")
     exit
@@ -82,8 +83,8 @@ listbox = Listbox(root, height = 8,
                   activestyle = 'dotbox', 
                   font = text_font)
 #
-txt_url1.insert(0, "https://")
-txt_url2.insert(0, "https://")
+txt_url1.insert(0, "https://paphian-yield.000webhostapp.com/api/post.php")
+txt_url2.insert(0, "https://paphian-yield.000webhostapp.com/api/get.php")
 #
 lbl1.place(x=1, y=0)
 lbl_url.place(x=1, y=30)
